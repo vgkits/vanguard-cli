@@ -33,12 +33,29 @@ You may wish to wipe your Vanguard board to get a clean start after your experim
 `vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware release found in 'flash/firmwares' folder
 
 
-## Bundling files
+## Uploading file collections to Vanguard with 'bundle'
 
-You can upload bundles of files to your Vanguard board, to provide specific python modules or files.
+You can upload bundles of files to your Vanguard board, to provide specific python modules or files. For example you can upload the bundle for the Vanguard Rainbow project by running...
+
+```
+vanguard bundle vgkits-rainbow
+```
+
+This single command is equivalent to performing the following commands...
+
+`vanguard bundle vgkits-default-modules` - installs the default vgkits modules
+`vanguard bundle vgkits.project.rainbow.paint` - installs the 
+`vanguard bundle vgkits-replserver` - configures servers for WebREPL HTML page + REPL over Websocket
+
+## Configuring a startup regime
+
+You can configure a ***main.py*** file on your Vanguard board, which will be launched when it powers up. 
+
+
+
 
 ## The 'vanguard' command
 
-The vgkits-vanguard Pypi package (installed via pip) installs a 'vanguard' command (equivalent to `python3 -m vgkits.vanguard`) .
+The vgkits-vanguard Pypi package (installed via pip) installs a 'vanguard' command in a local folder (equivalent to running `python3 -m vgkits.vanguard`).
 
 VGkits' tools to connect to Vanguard Shell, update Vanguard firmware.
