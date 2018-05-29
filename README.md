@@ -23,13 +23,21 @@ vanguard brainwash
 You may wish to wipe your Vanguard board to get a clean start after your experiments. You may wish to install a newer version of Micropython, or  wipe and install a replacement 'operating system' on your Vanguard board such as CircuitPython, [Espruino](http://www.espruino.com/EspruinoESP8266) (to write code in [Javascript](https://en.wikipedia.org/wiki/JavaScript)) or [Punyforth](https://github.com/zeroflag/punyforth) (to write code in the [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)) language). This can be achieved by...
 
 `vanguard brainwash python` - installs default _python_ firmware (equivalent to `vanguard brainwash micropython`)
+
 `vanguard brainwash javascript` - the default _javascript_ firmware (equivalent to `vanguard brainwash espruino`)
+
 `vanguard brainwash forth` - the default _forth_ firmware (equivalent to `vanguard brainwash punyforth`)
+
 `vanguard brainwash lua` - the default _lua_ firmware (equivalent to `vanguard brainwash nodemcu`)
+
 `vanguard brainwash micropython` - [latest micropython](https://micropython.org/download#esp8266) firmware release from the firmwares folder
+
 `vanguard brainwash circuitpython` - [latest circuitpython](https://github.com/adafruit/circuitpython/releases/latest) firmware release from the firmwares folder
+
 `vanguard brainwash espruino` - [latest espruino](https://www.espruino.com/binaries/) firmware release found in 'flash/firmwares' folder
-`vanguard brainwash punyforth` - latest punyforth firmware release found in 'flash/firmwares' folder
+
+`vanguard brainwash punyforth` - [latest punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin) firmware release found in 'flash/firmwares' folder
+
 `vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware release found in 'flash/firmwares' folder
 
 
