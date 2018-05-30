@@ -1,6 +1,6 @@
 # VGkits' Vanguard Tools
 
-The vgkits-vanguard package is published via Pip, and provides simple short commands for configuring and connecting to the python shell on VGkits' Vanguard boards.
+The vgkits-vanguard package will be published via Pip, and provides simple short commands for configuring and connecting to the python shell on VGkits' Vanguard boards.
 
 Once development of vanguard-tools is complete, assuming you have pip3 (part of Python3), you will be able to run just...
 
