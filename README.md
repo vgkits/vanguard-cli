@@ -8,7 +8,7 @@ Once development of vanguard-tools is complete, assuming you have pip3 (part of 
 pip3 install vgkits-vanguard
 ```
 
-...to install the Vanguard Tools. Then all the commands below will be available.
+...to install the Vanguard Tools. Then all the commands below will be available. If you don't yet have Pip3 installed in your laptop, then [visit these instructions](https://vgkits.org/blog/pip3-howto/)
 
 ## Getting a Python Prompt on Vanguard with 'shell'
 
