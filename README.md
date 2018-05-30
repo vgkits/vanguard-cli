@@ -2,7 +2,7 @@
 
 The vgkits-vanguard package is published via Pip, and provides simple short commands for configuring and connecting to the python shell on VGkits' Vanguard boards.
 
-## Getting a Python Prompt on Vanguard with **shell**
+## Getting a Python Prompt on Vanguard with 'shell'
 
 After [installing the Vanguard tools](https://vgkits.org/blog/vanguard-tools-howto/) with pip, you can connect to the python shell prompt on the Vanguard board over USB on Windows, MacOS or Linux, by running...
 
@@ -11,6 +11,29 @@ vanguard shell
 ```
 
 This auto-detects the Vanguard's USB device and your operating system's Terminal configuration. Then it launches [miniterm](http://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm) with the proper parameters to connect your [terminal](https://vgkits.org/blog/what-is-a-terminal/) to the [python shell](https://vgkits.org/blog/what-is-the-python-shell/).
+
+## Configuring a startup regime with 'regime'
+
+You can configure a ***main.py*** file on your Vanguard board, which will be launched when it powers up. 
+
+`vanguard regime vgkits.project.rainbow.paint` - installs the python script at **vgkits/project/rainbow/paint.py** as ***main.py***
+
+
+## Uploading file collections to Vanguard with 'bundle'
+
+You can upload bundles of files to your Vanguard board, to provide specific python modules or files. For example you can upload the bundle for the [Vanguard Rainbow project](https://vgkits.org/blog/projects/rainbow/) by running...
+
+```
+vanguard bundle vgkits-rainbow
+```
+
+This single command is equivalent to performing the following commands...
+
+`vanguard bundle vgkits-default-modules` - installs the default vgkits modules
+
+`vanguard bundle vgkits-replserver` - configures servers for WebREPL HTML page + REPL over Websocket
+
+`vanguard regime vgkits.project.rainbow.paint` - configures servers for WebREPL HTML page + REPL over Websocket
 
 ## Upgrading your Vanguard with 'brainwash'
 
@@ -40,29 +63,7 @@ You may wish to wipe your Vanguard board to get a clean start after your experim
 
 `vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware release found in 'flash/firmwares' folder
 
-
-## Uploading file collections to Vanguard with 'bundle'
-
-You can upload bundles of files to your Vanguard board, to provide specific python modules or files. For example you can upload the bundle for the [Vanguard Rainbow project](https://vgkits.org/blog/projects/rainbow/) by running...
-
-```
-vanguard bundle vgkits-rainbow
-```
-
-This single command is equivalent to performing the following commands...
-
-`vanguard bundle vgkits-default-modules` - installs the default vgkits modules
-`vanguard bundle vgkits-replserver` - configures servers for WebREPL HTML page + REPL over Websocket
-`vanguard regime vgkits.project.rainbow.paint` - configures servers for WebREPL HTML page + REPL over Websocket
-
-## Configuring a startup regime with 'regime'
-
-You can configure a ***main.py*** file on your Vanguard board, which will be launched when it powers up. 
-
-`vanguard regime vgkits.project.rainbow.paint` - installs the 
-
-
-## The 'vanguard' command
+## About the 'vanguard' command
 
 The vgkits-vanguard Pypi package (installed via pip) installs a 'vanguard' command in a local folder (equivalent to running `python3 -m vgkits.vanguard`).
 
