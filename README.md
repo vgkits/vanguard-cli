@@ -2,6 +2,14 @@
 
 The vgkits-vanguard package is published via Pip, and provides simple short commands for configuring and connecting to the python shell on VGkits' Vanguard boards.
 
+Once development of vanguard-tools is complete, assuming you have pip3 (part of Python3), you will be able to run just...
+
+```
+pip3 install vgkits-vanguard
+```
+
+...to install the Vanguard Tools. Then all the commands below will be available.
+
 ## Getting a Python Prompt on Vanguard with 'shell'
 
 After [installing the Vanguard tools](https://vgkits.org/blog/vanguard-tools-howto/) with pip, you can connect to the python shell prompt on the Vanguard board over USB on Windows, MacOS or Linux, by running...
