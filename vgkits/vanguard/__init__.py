@@ -1,4 +1,5 @@
 __version__ = "0.2.0"
+__app__ = "vanguard"
 
 def guessPort():
     import platform
@@ -17,12 +18,19 @@ def ensurePort(port):
     return port
 
 
+def calculateAppDir(*descendantDirs):
+    """Get the path of the preferred user config directory for vanguard"""
+    import click
+    return click.get_app_dir(__app__)
+
+
 def calculateDataDir(*descendantDirs):
-    descendantDirs = list(descendantDirs) # change from tuple
-    import os
-    scriptDir = os.path.dirname(os.path.abspath(__file__))
-    ancestorDirs = [scriptDir, "data"]
-    return os.sep.join(ancestorDirs + descendantDirs)
+    """Get the path of the package 'data' directory distributed with vanguard"""
+    from os import path
+    scriptDir = path.dirname(path.abspath(__file__))
+    pathStrings = [scriptDir, "data"]
+    pathStrings.extend(descendantDirs)
+    return path.join(pathStrings)
 
 
 def emulateInvocation(commandPattern, commandLookup):
