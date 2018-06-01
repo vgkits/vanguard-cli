@@ -1,9 +1,9 @@
 from setuptools import setup
 from vgkits.vanguard import __version__
 
-with open('README.rst') as f:
+with open('README.md') as f:
     readme = f.read()
-with open('CHANGES.rst') as f:
+with open('CHANGES.md') as f:
     changes = f.read()
 
 setup(
@@ -11,6 +11,7 @@ setup(
     version=__version__,
     description='Tools to support VGkits Vanguard ESP8266 python-programmable board.',
     long_description='{}\n\n{}'.format(readme, changes),
+    long_description_content_type="text/markdown",
     url='https://vgkits.org',
     author='@cefn',
     author_email='github.com@cefn.com',
@@ -47,7 +48,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            "vanguard = vgkits.vanguard.tool:main",
+            "vanguard = vgkits.vanguard:main",
             "vanguard-shell = vgkits.vanguard.shell:main",
             "vanguard-brainwash = vgkits.vanguard.brainwash:main",
         ],
