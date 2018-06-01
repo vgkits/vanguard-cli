@@ -1,5 +1,7 @@
 #CH ignore contents of venv folder
 venv
+#CH suppress IntelliJ project folder
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
