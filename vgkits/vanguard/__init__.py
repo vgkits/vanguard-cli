@@ -1,5 +1,15 @@
+import click
+
+from vgkits.vanguard.shell import main as shellMain
+from vgkits.vanguard.brainwash import main as brainwashMain
+
+
 __version__ = "0.2.0"
 __app__ = "vanguard"
+
+main = click.Group(chain=True)
+main.add_command(shellMain, "shell")
+main.add_command(brainwashMain, "brainwash")
 
 def guessPort():
     import platform
