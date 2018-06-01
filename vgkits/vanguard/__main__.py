@@ -7,16 +7,16 @@ from vgkits.vanguard.bundle import main as bundleMain
 from vgkits.vanguard.regime import main as regimeMain
 """
 
-toolGroup = click.Group(chain=True)
-toolGroup.add_command(shellMain, "shell")
-toolGroup.add_command(brainwashMain, "brainwash")
+main = click.Group(chain=True)
+main.add_command(shellMain, "shell")
+main.add_command(brainwashMain, "brainwash")
 """
 toolGroup.add_command(bundleMain, "bundle")
 toolGroup.add_command(regimeMain, "regime")
 """
 
 if __name__ == "__main__":
-    toolGroup()
+    main()
 
 """
 @cli.command()
