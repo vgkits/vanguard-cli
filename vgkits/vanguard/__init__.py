@@ -18,6 +18,59 @@ def ensurePort(port):
     return port
 
 
+def closePort(port):
+    import serial
+    ser = serial.Serial()
+    ser.port = port
+    ser.close()
+
+def getValidPorts():
+    from serial.tools.list_ports import comports
+    return [info.device for info in comports()]
+
+
+def selectPort():
+    port = None
+    from six.moves import input
+    validPorts = getValidPorts()
+
+    defaultPort = guessPort()
+
+    message = "Type the number of the device: "
+    if defaultPort is not None:
+        if defaultPort not in validPorts:
+            print("No device {}. Plugged in? Drivers installed?".format(defaultPort))
+            defaultPort = None
+
+    numValidPorts = len(validPorts)
+
+    if numValidPorts > 0:
+
+        if numValidPorts == 1:
+            defaultPort = validPorts[0]
+
+        if defaultPort is not None:
+            message += "({}) ".format(defaultPort)
+
+        while port is None:
+            for index, item in enumerate(validPorts):
+                print("{} : {}".format(index, item))
+
+            try:
+                choice = input(message)
+                if choice == "":
+                    if defaultPort is not None:
+                        port = defaultPort
+                else:
+                    port = validPorts[int(choice)]
+            except ValueError:
+                print("Cannot accept {}".format(choice))
+                pass
+
+        return port
+    else:
+        raise RuntimeError("No valid serial ports available.\nIs your device plugged in? Drivers installed?")
+
 def calculateAppDir(*descendantDirs):
     """Get the path of the preferred user config directory for vanguard"""
     import click
