@@ -30,7 +30,7 @@ def calculateDataDir(*descendantDirs):
     scriptDir = path.dirname(path.abspath(__file__))
     pathStrings = [scriptDir, "data"]
     pathStrings.extend(descendantDirs)
-    return path.join(pathStrings)
+    return path.join(*pathStrings)
 
 
 def emulateInvocation(commandPattern, commandLookup):
