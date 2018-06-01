@@ -1,15 +1,9 @@
 import click
 
-from vgkits.vanguard.shell import main as shellMain
-from vgkits.vanguard.brainwash import main as brainwashMain
-
 
 __version__ = "0.2.0"
 __app__ = "vanguard"
 
-main = click.Group(chain=True)
-main.add_command(shellMain, "shell")
-main.add_command(brainwashMain, "brainwash")
 
 def guessPort():
     import platform
@@ -57,3 +51,9 @@ def emulateInvocation(commandPattern, commandLookup):
 def extractBackreference(pattern, text):
     import re
     return re.search(pattern, text, re.MULTILINE).group(1)
+
+from vgkits.vanguard.shell import main as shellMain
+from vgkits.vanguard.brainwash import main as brainwashMain
+main = click.Group(chain=True)
+main.add_command(shellMain, "shell")
+main.add_command(brainwashMain, "brainwash")
