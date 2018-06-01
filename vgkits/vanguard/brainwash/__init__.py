@@ -41,7 +41,8 @@ boards = {
 @click.option("--release", "-r")
 @click.option("--port", "-p")
 @click.option("--baud", "-b")
-@click.option("--erase", "-e")
+@click.option("--erase", "-e", type=bool)
+@click.option("--flash", "-f", type=bool)
 @click.option("--device", "-d")
 def main(*a, **k):
     k = dict((name,value) for name, value in k.items() if value is not None and value is not "")
@@ -124,25 +125,28 @@ def calculateFlashLookup(deviceName=None, deviceConfig=None):
     else:
         raise RuntimeError("Requires deviceName or deviceConfig argument to be provided")
 
-def run(target="vanguard", release=None, port=None, baud=1500000, erase=True, device=None):
+#TODO erase=False default is a workaround until https://github.com/espressif/esptool/pull/314 is merged
+def run(target="vanguard", release=None, port=None, baud=1500000, erase=False, flash=True, device=None):
     import esptool
-    from vgkits.vanguard import ensurePort, emulateInvocation
+    from vgkits.vanguard import ensurePort, selectPort, closePort, emulateInvocation
 
     # populate missing parameters
     port = ensurePort(port)
 
+    if port is None:
+        port = selectPort()
 
     # erase board
     if erase:
         eraseLookup = dict(port=port,baud=baud)
-        eraseCommand = "esptool.py --port ${port} --baud ${baud} erase_flash"
+        eraseCommand = "esptool.py --port ${port} erase_flash"
         emulateInvocation(eraseCommand, eraseLookup)
         esptool.main()
-
 
     # flash board
     if device is None:
         deviceConfig = detectDeviceConfig(port)
+
         flashLookup = calculateFlashLookup(deviceConfig=deviceConfig)
     else:
         flashLookup = calculateFlashLookup(deviceName=device)
