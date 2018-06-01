@@ -18,10 +18,8 @@ setup(
     license='GPL3',
     packages=[
         'vgkits.vanguard',
-        'vgkits.vanguard.brainwash',
-        'vgkits.vanguard.bundle',
         'vgkits.vanguard.shell',
-        'vgkits.vanguard.tool',
+        'vgkits.vanguard.brainwash',
     ],
     package_data={'vgkits.vanguard': ['data/firmware']},
     install_requires=[
