@@ -1,0 +1,7 @@
+#documentation
+recursive-include vgkits/vanguard/data *
+
+#Misc
+include LICENSE
+include README.md
+include CHANGES.md
