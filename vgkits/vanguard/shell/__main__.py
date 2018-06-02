@@ -1,2 +1,2 @@
-from vgkits import main
+from vgkits.vanguard.shell import main
 main()
