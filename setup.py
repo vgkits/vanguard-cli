@@ -1,5 +1,4 @@
 from setuptools import setup
-from vgkits.vanguard import __version__
 
 with open('README.md') as f:
     readme = f.read()
@@ -8,11 +7,12 @@ with open('CHANGES.md') as f:
 
 setup(
     name="vgkits-vanguard",
-    version=__version__,
+    version="0.2.0",
     description='Tools to support VGkits Vanguard ESP8266 python-programmable board.',
     long_description='{}\n\n{}'.format(readme, changes),
     long_description_content_type="text/markdown",
     url='https://vgkits.org',
+    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc2.tar.gz',
     author='@cefn',
     author_email='github.com@cefn.com',
     license='GPL3',
@@ -32,6 +32,7 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
+    keywords = ['vgkits', 'vanguard', 'esp8266', 'micropython', 'circuitpython', 'iot', 'gcse', 'computer science',],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
