@@ -1,157 +1,66 @@
-VGkits' Vanguard Tools
-======================
+# VGkits' Vanguard Tools
 
-The vgkits-vanguard package will be published via Pip3, and provides
-simple short commands for configuring and connecting to the python shell
-on VGkits' Vanguard boards.
+The vgkits-vanguard package is published via Pip3 giving users simple short commands for configuring [Vanguard boards](https://vgkits.org/blog/projects/vanguard/) and connecting to a Vanguard board's built-in python shell.
 
-Once development of vanguard-tools is complete, assuming you have pip3
-(part of Python3), then to install the tools you must run the following
-from a [terminal](https://vgkits.org/blog/what-is-a-terminal/);
+Once pip3 (part of Python3) is [installed on your laptop](https://vgkits.org/blog/pip3-howto/), run the following from a [terminal](https://vgkits.org/blog/what-is-a-terminal/) to install the tools.
 
     pip3 install vgkits-vanguard
 
-Once this procedure completes, all the commands below should be
-available.
+Then below for the commands you can run after the tools are installed.
 
-If you don't yet have Pip3 installed in your laptop, then [visit these
-instructions](https://vgkits.org/blog/pip3-howto/)
+## shell: send python commands over USB
 
-Getting a Python Prompt on Vanguard with 'shell'
-------------------------------------------------
-
-After [installing the Vanguard
-tools](https://vgkits.org/blog/vanguard-tools-howto/) with pip3, you can
-connect to the python shell prompt on the Vanguard board over USB on
-Windows, MacOS or Linux, by running...
+Connect to the python shell prompt on the Vanguard board over USB on Windows, MacOS or Linux, by running...
 
     vanguard shell
 
-This auto-detects the Vanguard's USB device and your operating system's
-Terminal configuration. Then it launches
-[miniterm](http://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm)
-with the proper parameters to connect your
-[terminal](https://vgkits.org/blog/what-is-a-terminal/) to the [python
+This auto-detects the Vanguard's USB device and your operating system's Terminal configuration. Then it launches [miniterm](http://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm) with the proper parameters to connect your [terminal](https://vgkits.org/blog/what-is-a-terminal/) to the [python
 shell](https://vgkits.org/blog/what-is-the-python-shell/).
 
-Configuring a startup regime with 'regime'
-------------------------------------------
-
-You can configure a **main.py** file on your Vanguard board, which will
-be launched when it powers up.
-
-`vanguard regime vgkits.project.rainbow.paint` - installs the python
-script **vgkits/project/rainbow/paint.py** from the Vanguard board's
-internal filesystem as the **main.py** startup regime.
-
-Uploading file collections to Vanguard with 'bundle'
-----------------------------------------------------
-
-You can upload bundles of files to your Vanguard board, to provide
-specific python modules or files. For example you can upload the bundle
-for the [Vanguard Rainbow
-project](https://vgkits.org/blog/projects/rainbow/) by running...
-
-    vanguard bundle vgkits-rainbow
-
-This single command is equivalent to performing the following
-commands...
-
-`vanguard bundle vgkits-default-modules` - installs the default vgkits
-modules
-
-`vanguard bundle vgkits-replserver` - configures servers for WebREPL
-HTML page + REPL over Websocket
-
-`vanguard regime vgkits.project.rainbow.paint` - configures servers for
-WebREPL HTML page + REPL over Websocket
-
-Upgrading your Vanguard with 'brainwash'
+brainwash: upgrade your board
 ----------------------------------------
 
-After some experiments, you may wish to wipe your Vanguard board to get
-a clean start. You can wipe the board and re-install micropython by
-running...
+After some experiments, you can wipe your Vanguard board to get a clean start by running...
 
     vanguard brainwash
 
-You may wish to wipe your Vanguard board to get a clean start after your
-experiments. You may wish to install a newer version of Micropython, or
-wipe and install a replacement 'operating system' on your Vanguard board
-such as CircuitPython,
-[Espruino](http://www.espruino.com/EspruinoESP8266) (to write code in
-[Javascript](https://en.wikipedia.org/wiki/JavaScript)) or
-[Punyforth](https://github.com/zeroflag/punyforth) (to write code in the
-[Forth](https://en.wikipedia.org/wiki/Forth_(programming_language))
-language). This can be achieved by...
+By default, this installs the Vanguard build - the latest version of Micropython but with a collection of pre-installed libraries. However, you can use ***brainwash*** to wipe and install a different 'operating system' on your Vanguard board such as a clean [Micropython](https://micropython.org/download#esp8266) build, [CircuitPython](https://github.com/adafruit/circuitpython), [Espruino](http://www.espruino.com/EspruinoESP8266) (to write code in [Javascript](https://en.wikipedia.org/wiki/JavaScript)) or [Punyforth](https://github.com/zeroflag/punyforth) (to write code in the [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)) language). 
 
-`vanguard brainwash python` - installs default *python* firmware
-(equivalent to `vanguard brainwash micropython`)
+There are even [Basic](https://www.esp8266basic.com/) and [LISP](http://www.ulisp.com/show?21T5) interpreters designed to run on this processor!
 
-`vanguard brainwash javascript` - the default *javascript* firmware
-(equivalent to `vanguard brainwash espruino`)
 
-`vanguard brainwash forth` - the default *forth* firmware (equivalent to
-`vanguard brainwash punyforth`)
+`vanguard brainwash python` - installs default *python* firmware (equivalent to `vanguard brainwash micropython`)
 
-`vanguard brainwash lua` - the default *lua* firmware (equivalent to
-`vanguard brainwash nodemcu`)
+`vanguard brainwash javascript` - the default *javascript* firmware (equivalent to `vanguard brainwash espruino`)
 
-`vanguard brainwash micropython` - [latest
-micropython](https://micropython.org/download#esp8266) firmware release
-from the firmwares folder
+`vanguard brainwash lua` - the default *lua* firmware (equivalent to `vanguard brainwash nodemcu`)
 
-`vanguard brainwash circuitpython` - [latest
-circuitpython](https://github.com/adafruit/circuitpython/releases/latest)
-firmware release from the firmwares folder
+`vanguard brainwash basic` - the default *basic* firmware (equivalent to `vanguard brainwash esp8266basic`)
 
-`vanguard brainwash espruino` - [latest
-espruino](https://www.espruino.com/binaries/) firmware release found in
-'flash/firmwares' folder
+`vanguard brainwash forth` - the default *forth* firmware (equivalent to `vanguard brainwash punyforth`) 
 
-`vanguard brainwash punyforth` - [latest
-punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin)
-firmware release found in 'flash/firmwares' folder
+`vanguard brainwash micropython` - [latest micropython](https://micropython.org/download#esp8266) firmware release from the firmwares folder
 
-`vanguard brainwash nodemcu` - latest
-[NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware
-release found in 'flash/firmwares' folder
+`vanguard brainwash circuitpython` - [latest circuitpython](https://github.com/adafruit/circuitpython/releases/latest) firmware release from the firmwares folder
 
-Uploading file collections to Vanguard with 'bundle'
-----------------------------------------------------
+`vanguard brainwash espruino` - [latest espruino](https://www.espruino.com/binaries/) firmware release found in 'flash/firmwares' folder
 
-You can upload bundles of files to your Vanguard board, to provide
-specific python modules or files. For example you can upload the bundle
-for the Vanguard Rainbow project by running...
+`vanguard brainwash esp8266basic` - latest [ESP8266Basic](https://www.esp8266basic.com/) firmware release found in 'flash/firmwares' folder
 
-    vanguard bundle vgkits-rainbow
+`vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware release found in 'flash/firmwares' folder
 
-This single command is equivalent to performing the following
-commands...
+`vanguard brainwash punyforth` - [latest punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin) firmware release found in 'flash/firmwares' folder. ***N.B.*** To connect to Punyforth try `vanguard shell --line --echo --eol CRLF` as per [this issue](https://github.com/zeroflag/punyforth/issues/41)
 
-`vanguard bundle vgkits-default-modules` - installs the default vgkits
-modules `vanguard bundle vgkits.project.rainbow.paint` - installs the
-`vanguard bundle vgkits-replserver` - configures servers for WebREPL
-HTML page + REPL over Websocket
+## Troubleshooting
 
-Configuring a startup regime
-----------------------------
+The vgkits-vanguard Pypi package (installed via pip) should install a 'vanguard' command into a local folder, which can be run on Windows, Mac OS or Linux using just **vanguard**.
 
-You can configure a **main.py** file on your Vanguard board, which will
-be launched when it powers up.
+If for any reason **vanguard** is not available you can run instead...
 
-The 'vanguard' command
-----------------------
-
-The vgkits-vanguard Pypi package (installed via pip) should install a
-'vanguard' command into a local folder, which can be run on Windows, Mac
-OS or Linux using just **vanguard**.
-
-If for any reason **vanguard** is not available the equivalent command
-is...
-
-    python -m vgkits.vanguard.tool
+    python -m vgkits.vanguard
 
 ...or to force the use of Python3...
 
-    python3 -m vgkits.vanguard.tool
+    python3 -m vgkits.vanguard
+    
+If you encounter this issue, probably your path is not properly set up to include the files installed by pip3. Try following [these instructions](https://vgkits.org/blog/pip3-config-howto/) to fix it.
