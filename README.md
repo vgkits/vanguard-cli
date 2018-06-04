@@ -6,7 +6,7 @@ Once pip3 (part of Python3) is [installed on your laptop](https://vgkits.org/blo
 
     pip3 install vgkits-vanguard
 
-Then below for the commands you can run after the tools are installed.
+See below for the commands you can run after the tools are installed.
 
 ## shell: send python commands over USB
 
@@ -39,17 +39,17 @@ There are even [Basic](https://www.esp8266basic.com/) and [LISP](http://www.ulis
 
 `vanguard brainwash forth` - the default *forth* firmware (equivalent to `vanguard brainwash punyforth`) 
 
-`vanguard brainwash micropython` - [latest micropython](https://micropython.org/download#esp8266) firmware release from the firmwares folder
+`vanguard brainwash micropython` - [latest micropython](https://micropython.org/download#esp8266) release from the firmwares folder
 
-`vanguard brainwash circuitpython` - [latest circuitpython](https://github.com/adafruit/circuitpython/releases/latest) firmware release from the firmwares folder
+`vanguard brainwash circuitpython` - [latest circuitpython](https://github.com/adafruit/circuitpython/releases/latest) release from the firmwares folder
 
-`vanguard brainwash espruino` - [latest espruino](https://www.espruino.com/binaries/) firmware release found in 'flash/firmwares' folder
+`vanguard brainwash espruino` - [latest espruino](https://www.espruino.com/binaries/) release from the firmwares folder
 
-`vanguard brainwash esp8266basic` - latest [ESP8266Basic](https://www.esp8266basic.com/) firmware release found in 'flash/firmwares' folder
+`vanguard brainwash esp8266basic` - latest [ESP8266Basic](https://www.esp8266basic.com/) release from the firmwares folder
 
-`vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) firmware release found in 'flash/firmwares' folder
+`vanguard brainwash nodemcu` - latest [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) (eLua) release from the firmwares folder
 
-`vanguard brainwash punyforth` - [latest punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin) firmware release found in 'flash/firmwares' folder. ***N.B.*** To connect to Punyforth try `vanguard shell --line --echo --eol CRLF` as per [this issue](https://github.com/zeroflag/punyforth/issues/41)
+`vanguard brainwash punyforth` - [latest punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin) release from the firmwares folder. ***N.B.*** To connect to Punyforth try `vanguard shell --line --echo --eol CRLF` as per [this issue](https://github.com/zeroflag/punyforth/issues/41)
 
 ## Troubleshooting
 
