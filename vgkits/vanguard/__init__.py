@@ -2,6 +2,26 @@ import click
 
 __app__ = "vanguard"
 
+boards = {
+    "nodemcu_m": {
+        "manufacturer": "51",
+        "device": "4014",
+        "flash_size": "1MB",
+        "flash_mode":"dout",
+    },
+    "esp01_1M": {
+        "manufacturer": "ef",
+        "device": "4014",
+        "flash_size": "1MB",
+        "flash_mode":"dio",
+    },
+    "nodemcu_v2_amica": {
+        "manufacturer": "ef",
+        "device": "4016",
+        "flash_size": "4MB",
+        "flash_mode": "qio", # Pretty sure NodeMCU v2 is qio
+    },
+}
 
 def guessPort():
     import platform
@@ -17,6 +37,9 @@ def guessPort():
 def ensurePort(port):
     if port is None:
         port = guessPort()
+    validPorts = getValidPorts()
+    if port is None or port not in validPorts:
+        port = selectPort()
     return port
 
 
@@ -25,6 +48,7 @@ def closePort(port):
     ser = serial.Serial()
     ser.port = port
     ser.close()
+
 
 def getValidPorts():
     from serial.tools.list_ports import comports
@@ -103,8 +127,44 @@ def extractBackreference(pattern, text):
     import re
     return re.search(pattern, text, re.MULTILINE).group(1)
 
+def detectDeviceConfig(port):
+    import sys
+    import io
+    import esptool
+    oldOut = sys.stdout
+    newOut = io.StringIO()
+    emulateInvocation("esptool.py --port ${port} flash_id", dict(port=port))
+    try:
+        sys.stdout = newOut
+        esptool.main()
+    finally:
+        sys.stdout = oldOut
+
+    printed = newOut.getvalue()
+    return {
+        "chip": extractBackreference("^Chip is (\w+)$", printed),
+        "manufacturer": extractBackreference('^Manufacturer: (\w+)$', printed),
+        "device": extractBackreference('^Device: (\w+)$', printed),
+        "flash_size": extractBackreference('^Detected flash size: (\w+)$', printed),
+    }
+
+
+def calculateFlashLookup(deviceName=None, deviceConfig=None):
+    if deviceName:
+        return boards[deviceName]
+    elif deviceConfig:
+        for name,lookup in boards.items():
+            if all([lookup[key]==deviceConfig[key] for key in ["manufacturer", "device", "flash_size"]]):
+                return lookup
+        else:
+            return None
+    else:
+        raise RuntimeError("Requires deviceName or deviceConfig argument to be provided")
+
 from vgkits.vanguard.shell import main as shellMain
 from vgkits.vanguard.brainwash import main as brainwashMain
+from vgkits.vanguard.braindump import main as braindumpMain
 main = click.Group(chain=True)
 main.add_command(shellMain, "shell")
 main.add_command(brainwashMain, "brainwash")
+main.add_command(braindumpMain, "braindump")
