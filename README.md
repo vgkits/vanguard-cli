@@ -1,10 +1,12 @@
 # VGkits' Vanguard Tools
 
-The vgkits-vanguard package is published via Pip3 giving users simple short commands for configuring [Vanguard boards](https://vgkits.org/blog/projects/vanguard/) and connecting to a Vanguard board's built-in python shell.
+The vgkits-vanguard package is published via [Pip3](https://vgkits.org/blog/what-is-pip3/) giving users simple short commands for configuring [Vanguard boards](https://vgkits.org/blog/projects/vanguard/) and connecting to a Vanguard board's built-in python shell.
 
-Once pip3 (part of Python3) is [installed on your laptop](https://vgkits.org/blog/pip3-howto/), run the following from a [terminal](https://vgkits.org/blog/what-is-a-terminal/) to install the tools.
+Run this ***pip3*** command from a [terminal](https://vgkits.org/blog/what-is-a-terminal/) to install the tools.
 
     pip3 install vgkits-vanguard
+
+If you don't yet have pip3, (which is installed as part of Python3) then [follow these instructions](https://vgkits.org/blog/pip3-howto/) to install it on your laptop.
 
 See below for the commands you can run after the tools are installed.
 
@@ -64,7 +66,7 @@ This creates a file ***braindump.bin*** in the current folder. We suggest you re
 vanguard brainwash --input somethingelse.bin
 ```
 
-## put : upload main.py or another python module
+## put : upload main.py or python module
 
 If there is a main.py file in the current working directory, you can upload it using...
 
@@ -81,7 +83,7 @@ vanguard put bmp180.py
 You will then be able to successfully `import bmp180` from the Vanguard board, and [run the example](https://github.com/cefn/micropython-bmp180/blob/master/README.md).
 
 
-## rm : remove main.py or another python module
+## rm : remove main.py or python module
 
 If you no longer want the main.py startup script, then run...
 
@@ -90,6 +92,17 @@ vanguard rm main.py
 ```
 
 ...and the Vanguard board will no longer run your script on powerup.
+
+## see : launch a file explorer
+
+To help identify the location and contents of the current directory, you can open a file explorer at the current location like...
+
+```
+vanguard see
+```
+
+Use the terminal command `cd` (change directory) to change the directory by typing in different paths. For example `cd Desktop` will change the directory to a subfolder called Desktop.
+
 
 ## Troubleshooting
 
