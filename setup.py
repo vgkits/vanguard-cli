@@ -30,6 +30,7 @@ setup(
         "adafruit-ampy>=1.0.3",
         "rshell>=0.0.12",
         "six>=1.11.0",
+        "thonny>=2.1.17",
     ],
     include_package_data=True,
     zip_safe=False,
