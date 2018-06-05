@@ -95,11 +95,13 @@ vanguard rm main.py
 
 ## see : launch a file explorer
 
-To help identify the location and contents of the current directory, you can open a file explorer at the current location like...
+Every terminal has a 'current working directory', the folder it is currently using to create or find files. To see the contents of this folder, run...
 
 ```
 vanguard see
 ```
+
+...to open a graphical file explorer showing the current directory.
 
 Use the terminal command `cd` (change directory) to change the directory by typing in different paths. For example `cd Desktop` will change the directory to a subfolder called Desktop.
 
