@@ -48,8 +48,11 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            "vanguard = vgkits.vanguard:main",
-            "vanguard-shell = vgkits.vanguard.shell:main",
+            "vanguard =     vgkits.vanguard:main",
+            "vanguard-see = vgkits.vanguard:see",
+            "vanguard-put = vgkits.vanguard:put",
+            "vanguard-rm =  vgkits.vanguard:rm",
+            "vanguard-shell =     vgkits.vanguard.shell:main",
             "vanguard-brainwash = vgkits.vanguard.brainwash:main",
             "vanguard-braindump = vgkits.vanguard.braindump:main",
         ],

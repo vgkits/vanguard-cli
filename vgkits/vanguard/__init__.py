@@ -161,10 +161,99 @@ def calculateFlashLookup(deviceName=None, deviceConfig=None):
     else:
         raise RuntimeError("Requires deviceName or deviceConfig argument to be provided")
 
+@click.command()
+@click.option("--path", "-p", default=None)
+def see(path):
+    if path is None:
+        path = "."
+    import webbrowser
+    import sys
+
+    if sys.platform == 'darwin':
+        path = "file://" + path
+    webbrowser.open(path)
+
+
+@click.command()
+@click.option("--port", "-p", default=None)
+@click.argument("localpath", type=click.Path(exists=True), default="main.py")
+@click.argument("remotepath", default=None, required=False)
+def put(port, localpath, remotepath):
+    port = ensurePort(port)
+    if remotepath is None:
+        remotepath = localpath
+    ampyPut(port, localpath, remotepath)
+
+
+@click.command()
+@click.argument("remotepath", required=True)
+@click.option("--port", "-p", default=None)
+def rm(remotepath, port):
+    port = ensurePort(port)
+    ampyRm(port, remotepath)
+
+def ampyPut(port, localPath, remotePath):
+    from ampy import pyboard, cli
+    try:
+        putCommand = "ampy --port ${port} put ${localPath} ${remotePath}"
+        putConfig = dict(
+            port=port,
+            localPath=localPath,
+            remotePath=remotePath,
+        )
+        emulateInvocation(putCommand, putConfig)
+        try:
+            cli.cli()
+        except SystemExit:
+            pass
+    except pyboard.PyboardError as e:
+        raise click.ClickException(e)
+    except RuntimeError as e:
+        raise click.ClickException(e)
+
+    ampyRelease()
+
+
+def ampyRm(port, remotePath):
+    from ampy import pyboard, cli
+    try:
+        putCommand = "ampy --port ${port} rm ${remotePath}"
+        putConfig = dict(
+            port=port,
+            remotePath=remotePath
+        )
+        emulateInvocation(putCommand, putConfig)
+        try:
+            cli.cli()
+        except SystemExit:
+            pass
+
+    except pyboard.PyboardError as e:
+        raise click.ClickException(e)
+    except RuntimeError as e:
+        raise click.ClickException(e)
+
+    ampyRelease()
+
+
+def ampyRelease():
+    from ampy import cli
+    if cli._board is not None:
+        try:
+            cli._board.close()
+        except:
+            pass
+
+
+main = click.Group(chain=True)
+main.add_command(see, "see")
+main.add_command(put, "put")
+main.add_command(rm,  "rm")
+
+# placed at foot to avoid issues with cyclic imports
 from vgkits.vanguard.shell import main as shellMain
 from vgkits.vanguard.brainwash import main as brainwashMain
 from vgkits.vanguard.braindump import main as braindumpMain
-main = click.Group(chain=True)
 main.add_command(shellMain, "shell")
 main.add_command(brainwashMain, "brainwash")
 main.add_command(braindumpMain, "braindump")

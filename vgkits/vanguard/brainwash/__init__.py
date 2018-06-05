@@ -3,7 +3,7 @@ import click
 from vgkits.vanguard import detectDeviceConfig, calculateFlashLookup
 
 brains = [
-    "vanguard",
+    "vanguard", # TODO should add alias of vanguard-rainbow?
     "python",
     "javascript",
     "basic",
@@ -26,6 +26,7 @@ brains = [
 @click.option("--erase", "-e", type=bool)
 @click.option("--flash", "-f", type=bool)
 @click.option("--device", "-d")
+@click.option("--input", "-i", type=click.Path(exists=True))
 def main(*a, **k):
     k = dict((name,value) for name, value in k.items() if value is not None and value is not "")
     run(*a, **k)
@@ -74,8 +75,14 @@ def calculateImageFile(target, release):
         raise FileNotFoundError("No image matching {} available".format(target))
 
 
-#TODO erase=False default is a workaround until https://github.com/espressif/esptool/pull/314 is merged
-def run(target="vanguard", release=None, port=None, baud=1500000, erase=False, flash=True, device=None):
+#TODO erase=False default is a workaround until https://github.com/espressif/esptool/pull/314 is merged into pip
+def run(target=None, release=None, port=None, baud=1500000, erase=False, flash=True, device=None, input=None):
+
+    if target is not None and input is not None:
+        raise click.BadOptionUsage("Cannot use --input {} as well as target {}".format(input, target))
+    elif target is None and input is None:
+        target = "vanguard"
+
     import esptool
     from vgkits.vanguard import ensurePort, emulateInvocation
 
@@ -97,14 +104,16 @@ def run(target="vanguard", release=None, port=None, baud=1500000, erase=False, f
         else:
             flashLookup = calculateFlashLookup(deviceName=device)
 
+        path = calculateImageFile(target, release) if target is not None else input
+
         if flashLookup is not None:
             # locate target firmware
             flashLookup.update(
                 port=port,
                 baud=baud,
-                image_path=calculateImageFile(target, release)
+                path=path
             )
 
-            flashCommand = "esptool.py --port ${port} --baud ${baud} write_flash --flash_mode ${flash_mode} --flash_size ${flash_size} 0 ${image_path}"
+            flashCommand = "esptool.py --port ${port} --baud ${baud} write_flash --flash_mode ${flash_mode} --flash_size ${flash_size} 0 ${path}"
             emulateInvocation(flashCommand, flashLookup)
             esptool.main()
