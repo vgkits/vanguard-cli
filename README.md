@@ -14,7 +14,7 @@ Connect to the python shell prompt on the Vanguard board over USB on Windows, Ma
 
     vanguard shell
 
-This auto-detects the Vanguard's USB device and your operating system's Terminal configuration. Then it launches [miniterm](http://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm) with the proper parameters to connect your [terminal](https://vgkits.org/blog/what-is-a-terminal/) to the [python
+This auto-detects the Vanguard's USB device and your operating system's Terminal configuration. Then it launches [miniterm](https://vgkits.org/blog/use-miniterm/) with the proper parameters to connect your [terminal](https://vgkits.org/blog/what-is-a-terminal/) to the [python
 shell](https://vgkits.org/blog/what-is-the-python-shell/).
 
 brainwash: upgrade your board
