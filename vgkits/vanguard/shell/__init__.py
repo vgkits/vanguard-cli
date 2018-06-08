@@ -17,7 +17,7 @@ def main(*a, **k):
 
 def run(port=None, baud=115200, echo=False, raw=True, eol=None):
     import os
-    from serial.tools import miniterm
+    from vgkits import miniterm
     from vgkits.vanguard import ensurePort, emulateInvocation
     port = ensurePort(port)
 
