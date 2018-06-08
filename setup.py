@@ -30,7 +30,8 @@ setup(
         "adafruit-ampy>=1.0.3",
         "rshell>=0.0.12",
         "six>=1.11.0",
-        "thonny>=2.1.17",
+#        "thonny>=2.1.17", # suppressed until there is a fix for https://bitbucket.org/plas/thonny/issues/434/installed-through-pip3-thonny-cant-import
+# 		add thonny-esp or thonny-micropython to get plugin
     ],
     include_package_data=True,
     zip_safe=False,
