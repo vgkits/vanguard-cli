@@ -25,7 +25,7 @@ After some experiments, you can wipe your Vanguard board to get a clean start by
 
     vanguard brainwash
 
-By default, this installs the Vanguard build - the latest version of Micropython but with a collection of pre-installed libraries. However, you can use ***brainwash*** to wipe and install a different 'operating system' on your Vanguard board such as a clean [Micropython](https://micropython.org/download#esp8266) build, [CircuitPython](https://github.com/adafruit/circuitpython), [Espruino](http://www.espruino.com/EspruinoESP8266) (to write code in [Javascript](https://en.wikipedia.org/wiki/JavaScript)) or [Punyforth](https://github.com/zeroflag/punyforth) (to write code in the [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)) language). 
+This is equivalent to `vanguard brainwash vanguard` to install latest Micropython plus VGkits' pre-installed libraries. However, you can use ***brainwash*** to wipe and install a different 'operating system' on your Vanguard board such as a clean [Micropython](https://micropython.org/download#esp8266) build, [CircuitPython](https://github.com/adafruit/circuitpython), [Espruino](http://www.espruino.com/EspruinoESP8266) (to write code in [Javascript](https://en.wikipedia.org/wiki/JavaScript)) or [Punyforth](https://github.com/zeroflag/punyforth) (to write code in the [Forth](https://en.wikipedia.org/wiki/Forth_(programming_language)) language). 
 
 There are even [Basic](https://www.esp8266basic.com/) and [LISP](http://www.ulisp.com/show?21T5) interpreters designed to run on this processor!
 
