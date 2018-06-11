@@ -7,16 +7,17 @@ with open('CHANGES.md') as f:
 
 setup(
     name="vgkits-vanguard",
-    version="0.2.0_rc8",
+    version="0.2.0_rc10",
     description='Tools to support VGkits Vanguard ESP8266 python-programmable board.',
     long_description='{}\n\n{}'.format(readme, changes),
     long_description_content_type="text/markdown",
     url='https://vgkits.org',
-    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc8.tar.gz',
+    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc10.tar.gz',
     author='@cefn',
     author_email='github.com@cefn.com',
     license='GPL3',
     packages=[
+        'vgkits',
         'vgkits.vanguard',
         'vgkits.vanguard.shell',
         'vgkits.vanguard.brainwash',
@@ -30,8 +31,9 @@ setup(
         "adafruit-ampy>=1.0.3",
         "rshell>=0.0.12",
         "six>=1.11.0",
-#        "thonny>=2.1.17", # suppressed until there is a fix for https://bitbucket.org/plas/thonny/issues/434/installed-through-pip3-thonny-cant-import
-# 		add thonny-esp or thonny-micropython to get plugin
+        "pybin>=0.3.4",
+        "thonny>=2.2.0b4",
+        "thonny-esp>=0.1b1",
     ],
     include_package_data=True,
     zip_safe=False,
