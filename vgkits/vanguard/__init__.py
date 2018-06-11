@@ -21,6 +21,13 @@ boards = {
         "flash_size": "4MB",
         "flash_mode": "qio", # Pretty sure NodeMCU v2 is qio
     },
+    "feather_huzzah": {
+        "chip": "ESP8266EX",
+        "manufacturer": "e0",
+        "device": "4016",
+        "flash_size": "4MB",
+        "flash_mode": "qio",
+    }
 }
 
 def guessPort():
@@ -130,7 +137,7 @@ def extractBackreference(pattern, text):
 def detectDeviceConfig(port):
     import sys
     import io
-    import esptool
+    from vgkits import esptool
     oldOut = sys.stdout
     newOut = io.StringIO()
     emulateInvocation("esptool.py --port ${port} flash_id", dict(port=port))
@@ -163,9 +170,14 @@ def calculateFlashLookup(deviceName=None, deviceConfig=None):
 
 @click.command()
 @click.option("--path", "-p", default=None)
-def see(path):
-    if path is None:
+@click.argument("alias")
+def see(path, alias=None):
+    if path is None and alias is None:
         path = "."
+    elif alias == "firmware":
+        path = calculateDataDir("firmware")
+    elif path is not None and alias is not None:
+        raise click.BadParameter("Cannot specify --path {} and alias {}".format(path, alias) )
     import webbrowser
     import sys
 
