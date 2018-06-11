@@ -3,7 +3,8 @@ import click
 from vgkits.vanguard import detectDeviceConfig, calculateFlashLookup
 
 brains = [
-    "vanguard", # TODO should add alias of vanguard-rainbow?
+    "vanguard",
+    "vanguard-rainbow",
     "python",
     "javascript",
     "basic",
@@ -35,6 +36,7 @@ def main(*a, **k):
 def calculateImageFile(target, release):
     targetAliases = {
         None: "vanguard",
+        "vanguard": "vanguard+rainbow",
         "python": "micropython",
         "javascript": "espruino",
         "basic": "esp8266basic",
@@ -83,7 +85,7 @@ def run(target=None, release=None, port=None, baud=1500000, erase=False, flash=T
     elif target is None and input is None:
         target = "vanguard"
 
-    import esptool
+    from vgkits import esptool
     from vgkits.vanguard import ensurePort, emulateInvocation
 
     port = ensurePort(port)
@@ -117,3 +119,5 @@ def run(target=None, release=None, port=None, baud=1500000, erase=False, flash=T
             flashCommand = "esptool.py --port ${port} --baud ${baud} write_flash --flash_mode ${flash_mode} --flash_size ${flash_size} 0 ${path}"
             emulateInvocation(flashCommand, flashLookup)
             esptool.main()
+        else:
+            click.echo("Device doesn't match known flashing configuration", err=True)
