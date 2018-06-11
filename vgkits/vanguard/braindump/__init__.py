@@ -10,7 +10,7 @@ def main(*a, **k):
     run(*a, **k)
 
 def run(port=None, baud=1500000, device=None, output="braindump.bin"):
-    import esptool
+    from vgkits import esptool
     from vgkits.vanguard import ensurePort, detectDeviceConfig, calculateFlashLookup, emulateInvocation
 
     port = ensurePort(port)
