@@ -168,16 +168,17 @@ def calculateFlashLookup(deviceName=None, deviceConfig=None):
     else:
         raise RuntimeError("Requires deviceName or deviceConfig argument to be provided")
 
+
 @click.command()
-@click.option("--path", "-p", default=None)
-@click.argument("alias")
-def see(path, alias=None):
-    if path is None and alias is None:
+@click.option("--alias", "-a", default=None)
+@click.argument("path", default=None, required=False)
+def see(alias=None, path=None):
+    if alias is None and path is None :
         path = "."
     elif alias == "firmware":
         path = calculateDataDir("firmware")
-    elif path is not None and alias is not None:
-        raise click.BadParameter("Cannot specify --path {} and alias {}".format(path, alias) )
+    elif alias is not None and path is not None :
+        raise click.BadParameter("Cannot specify --alias {} and path {}".format(alias, path) )
     import webbrowser
     import sys
 
@@ -203,6 +204,12 @@ def put(port, localpath, remotepath):
 def rm(remotepath, port):
     port = ensurePort(port)
     ampyRm(port, remotepath)
+
+
+@click.command(context_settings=dict(ignore_unknown_options=True,))
+def braindump():
+    click.echo("Deprecated: Use brainfreeze instead.")
+
 
 def ampyPut(port, localPath, remotePath):
     from ampy import pyboard, cli
@@ -261,11 +268,13 @@ main = click.Group(chain=True)
 main.add_command(see, "see")
 main.add_command(put, "put")
 main.add_command(rm,  "rm")
+main.add_command(braindump,  "braindump") # remove legacy
 
-# placed at foot to avoid issues with cyclic imports
+# imports late in file to avoid issues with cyclic imports
 from vgkits.vanguard.shell import main as shellMain
 from vgkits.vanguard.brainwash import main as brainwashMain
-from vgkits.vanguard.braindump import main as braindumpMain
+from vgkits.vanguard.brainfreeze import main as brainfreezeMain
+
 main.add_command(shellMain, "shell")
 main.add_command(brainwashMain, "brainwash")
-main.add_command(braindumpMain, "braindump")
+main.add_command(brainfreezeMain, "brainfreeze")

@@ -4,15 +4,15 @@ from vgkits.vanguard import detectDeviceConfig, calculateFlashLookup
 
 brains = [
     "vanguard",
-    "vanguard-rainbow",
+    "vanguard+rainbow",
     "python",
     "javascript",
     "basic",
     "lua",
     "forth",
     "micropython",
+    "micropython+blinka",
     "circuitpython",
-    "blinka",
     "espruino",
     "nodemcu",
     "punyforth",
@@ -54,7 +54,7 @@ def calculateImageFile(target, release):
         FirmwareData = namedtuple("ImageData", "path base name release")
 
         firmwareDir = calculateDataDir("firmware")
-        firmwarePattern = re.compile("(" + target + ")-?v?([0-9].*)\.bin")
+        firmwarePattern = re.compile("(" + re.escape(target) + ")-?v?([0-9].*)\.bin")
         firmwares = list()
         for root, dirnames, filenames in os.walk(firmwareDir):
             for filename in filenames:
@@ -78,7 +78,7 @@ def calculateImageFile(target, release):
 
 
 #TODO erase=False default is a workaround until https://github.com/espressif/esptool/pull/314 is merged into pip
-def run(target=None, release=None, port=None, baud=1500000, erase=False, flash=True, device=None, input=None):
+def run(target=None, release=None, port=None, baud=1500000, erase=True, flash=True, device=None, input=None):
 
     if target is not None and input is not None:
         raise click.BadOptionUsage("Cannot use --input {} as well as target {}".format(input, target))

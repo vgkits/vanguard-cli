@@ -7,12 +7,12 @@ with open('CHANGES.md') as f:
 
 setup(
     name="vgkits-vanguard",
-    version="0.2.0_rc10",
+    version="0.2.0_rc11",
     description='Tools to support VGkits Vanguard ESP8266 python-programmable board.',
     long_description='{}\n\n{}'.format(readme, changes),
     long_description_content_type="text/markdown",
     url='https://vgkits.org',
-    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc10.tar.gz',
+    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc11.tar.gz',
     author='@cefn',
     author_email='github.com@cefn.com',
     license='GPL3',
@@ -21,7 +21,7 @@ setup(
         'vgkits.vanguard',
         'vgkits.vanguard.shell',
         'vgkits.vanguard.brainwash',
-        'vgkits.vanguard.braindump',
+        'vgkits.vanguard.brainfreeze',
     ],
     package_data={'vgkits.vanguard': ['data/firmware']},
     install_requires=[
@@ -58,7 +58,7 @@ setup(
             "vanguard-rm =  vgkits.vanguard:rm",
             "vanguard-shell =     vgkits.vanguard.shell:main",
             "vanguard-brainwash = vgkits.vanguard.brainwash:main",
-            "vanguard-braindump = vgkits.vanguard.braindump:main",
+            "vanguard-brainfreeze = vgkits.vanguard.brainfreeze:main",
         ],
     }
 )

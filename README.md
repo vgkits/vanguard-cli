@@ -52,15 +52,15 @@ There are even [Basic](https://www.esp8266basic.com/) and [LISP](http://www.ulis
 
 `vanguard brainwash punyforth` - [latest punyforth](https://github.com/zeroflag/punyforth/tree/master/arch/esp8266/bin) release from the firmwares folder. ***N.B.*** To connect to Punyforth try `vanguard shell --line --echo --eol CRLF` as per [this issue](https://github.com/zeroflag/punyforth/issues/41)
 
-## braindump : back up the board's current configuration
+## brainfreeze : back up the board's current configuration
 
 After investing time in uploading libraries, writing and testing scripts on your board, you can save an 'image' of your operating system including any installed files by running...
 
 ```
-vanguard braindump
+vanguard brainfreeze
 ```
 
-This creates a file ***braindump.bin*** in the current folder. We suggest you rename this file to *somethingelse.bin* to help you remember the configuration you saved. Use that file to restore your board to the same configuration at a later time by running...
+This creates a file ***brainfreeze.bin*** in the current folder. We suggest you rename this file to *somethingelse.bin* to help you remember the configuration you saved. Use that file to restore your board to the same configuration at a later time by running...
 
 ```
 vanguard brainwash --input somethingelse.bin
