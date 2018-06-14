@@ -211,6 +211,18 @@ def braindump():
     click.echo("Deprecated: Use brainfreeze instead.")
 
 
+@click.command()
+@click.option("--port", "-p", default=None)
+def restart(port):
+    import ampy.pyboard as pyboard
+    from time import sleep
+    pyb = pyboard.Pyboard(port)
+    pyb.enter_raw_repl()
+    sleep(0.5) # CH test if this is needed
+    pyb.exec('import machine; machine.reset()')
+    pyb.close()
+
+
 def ampyPut(port, localPath, remotePath):
     from ampy import pyboard, cli
     try:
