@@ -21,14 +21,15 @@ brains = [
 
 @click.command()
 @click.argument("target", type=click.Choice(brains + [""]), default="")
-@click.option("--release", "-r")
-@click.option("--port", "-p")
-@click.option("--baud", "-b")
-@click.option("--erase", "-e", type=bool)
-@click.option("--flash", "-f", type=bool)
-@click.option("--device", "-d")
-@click.option("--input", "-i", type=click.Path(exists=True))
+@click.option("--release", "-r", help="Upload specific release of TARGET firmware")
+@click.option("--port", "-p", help="The serial UART port to use")
+@click.option("--baud", "-b", help="The serial UART speed to use")
+@click.option("--erase", "-e", type=bool, help="Activate/deactivate erasing")
+@click.option("--flash", "-f", type=bool, help="Activate/deactivate flashing")
+@click.option("--device", "-d", help="Treat as known device (suppress auto-detection)")
+@click.option("--input", "-i", type=click.Path(exists=True), help="Path to a firmware image file")
 def main(*a, **k):
+    """Replaces firmware with latest firmware named TARGET"""
     k = dict((name,value) for name, value in k.items() if value is not None and value is not "")
     run(*a, **k)
 
