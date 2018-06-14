@@ -168,9 +168,7 @@ if os.name == 'nt':  # noqa
         def getkey(self):
             while True:
                 z = msvcrt.getwch()
-                if z == unichr(13):
-                    return unichr(10)
-                elif z is unichr(0) or z is unichr(0xe0):
+                if z is unichr(0) or z is unichr(0xe0):
                     try:
                         code = msvcrt.getwch()
                         if z is unichr(0):
