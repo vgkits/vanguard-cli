@@ -33,8 +33,7 @@ modules
 `vanguard bundle vgkits-replserver` - configures servers for WebREPL
 HTML page + REPL over Websocket
 
-`vanguard regime vgkits.project.rainbow.paint` - configures servers for
-WebREPL HTML page + REPL over Websocket
+`vanguard regime vgkits.project.rainbow.paint` - makes a copy of the script /vgkits/project/rainbow/paint.py at the location /main.py on the board.
 
 Uploading file collections to Vanguard with 'bundle'
 ----------------------------------------------------
