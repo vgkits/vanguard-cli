@@ -122,10 +122,11 @@ def calculateDataDir(*descendantDirs):
 def emulateInvocation(commandPattern, commandLookup):
     import sys
     import string
+    import shlex
     try:
         command = string.Template(commandPattern).substitute(commandLookup)
         print("Running '" + command + "'")
-        sys.argv = command.split()
+        sys.argv = shlex.split(command)
     except KeyError as e:
         raise RuntimeError("Invocation '" + commandPattern + "' missing value: " + str(e))
 
