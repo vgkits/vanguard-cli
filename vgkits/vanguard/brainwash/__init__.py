@@ -116,6 +116,12 @@ def run(target=None, release=None, port=None, baud=1500000, erase=True, flash=Tr
                 path=path
             )
 
+            # locate target firmware
+            import pipes
+            flashLookup.update(
+                path=pipes.quote(flashLookup['path'])
+            )
+
             flashCommand = "esptool.py --port ${port} --baud ${baud} write_flash --flash_mode ${flash_mode} --flash_size ${flash_size} 0 ${path}"
             emulateInvocation(flashCommand, flashLookup)
             esptool.main()
