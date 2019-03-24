@@ -27,7 +27,14 @@ boards = {
         "device": "4016",
         "flash_size": "4MB",
         "flash_mode": "qio",
-    }
+    },
+    "d1_mini": {
+        "chip": "ESP8266EX",
+        "manufacturer": "20",
+        "device": "4016",
+        "flash_size": "4MB",
+        "flash_mode": "qio",
+    },
 }
 
 def guessPort():
