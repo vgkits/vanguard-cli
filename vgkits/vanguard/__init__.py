@@ -2,6 +2,7 @@ import click
 
 __app__ = "vanguard"
 
+# TODO CH restructure to group by chip identity, memory size, with multiple names, manufacturers per flashing configuration
 boards = {
     "nodemcu_m": {
         "manufacturer": "51",
@@ -31,6 +32,13 @@ boards = {
     "d1_mini": {
         "chip": "ESP8266EX",
         "manufacturer": "20",
+        "device": "4016",
+        "flash_size": "4MB",
+        "flash_mode": "qio",
+    },
+    "d1_mini_variant": {
+        "chip": "ESP8266EX",
+        "manufacturer": "5e",
         "device": "4016",
         "flash_size": "4MB",
         "flash_mode": "qio",
