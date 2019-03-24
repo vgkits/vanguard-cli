@@ -72,7 +72,7 @@ def calculateImageFile(target, release):
                 else:
                     return None
             else: # choose latest by semver order
-                order = sorted(firmwares, key=lambda image:image.release.split("."), reverse=True)
+                order = sorted(firmwares, key=lambda image:[int(part) for part in image.release.split(".")], reverse=True)
                 return order[0].path
 
         raise FileNotFoundError("No image matching {} available".format(target))
