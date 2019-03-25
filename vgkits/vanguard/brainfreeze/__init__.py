@@ -6,6 +6,7 @@ import click
 @click.option("--device", "-d")
 @click.option("--output", "-o")
 def main(*a, **k):
+    """Saves an image of current board firmware to a local file, for use by `vanguard brainwash`"""
     k = dict((name,value) for name, value in k.items() if value is not None and value is not "")
     run(*a, **k)
 

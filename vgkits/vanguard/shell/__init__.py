@@ -11,6 +11,7 @@ import click
 @click.option("--line", "raw", flag_value=False, default=None)
 @click.option("--eol")
 def main(*a, **k):
+    """Detects board and connects to interactive console."""
     k = dict((name,value) for name, value in k.items() if value is not None)
     run(*a, **k)
 

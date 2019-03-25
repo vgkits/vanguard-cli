@@ -188,6 +188,7 @@ def calculateFlashLookup(deviceName=None, deviceConfig=None):
 @click.option("--alias", "-a", default=None)
 @click.argument("path", default=None, required=False)
 def see(alias=None, path=None):
+    """Launches a GUI file explorer to see the current working directory. Cross platform"""
     if alias is None and path is None :
         path = "."
     elif alias == "firmware":
@@ -207,6 +208,7 @@ def see(alias=None, path=None):
 @click.argument("localpath", type=click.Path(exists=True), default="main.py")
 @click.argument("remotepath", default=None, required=False)
 def put(port, localpath, remotepath):
+    """Uploads a local file to the board"""
     port = ensurePort(port)
     if remotepath is None:
         remotepath = localpath
@@ -217,6 +219,7 @@ def put(port, localpath, remotepath):
 @click.argument("remotepath", required=True)
 @click.option("--port", "-p", default=None)
 def rm(remotepath, port):
+    """Removes a file from the board"""
     port = ensurePort(port)
     ampyRm(port, remotepath)
 
@@ -229,6 +232,7 @@ def braindump():
 @click.command()
 @click.option("--port", "-p", default=None)
 def restart(port):
+    """Forces the board to reboot"""
     import ampy.pyboard as pyboard
     from time import sleep
     pyb = pyboard.Pyboard(port)
@@ -295,6 +299,7 @@ main = click.Group(chain=True)
 main.add_command(see, "see")
 main.add_command(put, "put")
 main.add_command(rm,  "rm")
+main.add_command(rm,  "restart")
 main.add_command(braindump,  "braindump") # remove legacy
 
 # imports late in file to avoid issues with cyclic imports
