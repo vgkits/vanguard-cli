@@ -285,6 +285,27 @@ def ampyRm(port, remotePath):
 
     ampyRelease()
 
+def ampyMkdir(port, remotePath):
+    from ampy import pyboard, cli
+    try:
+        putCommand = "ampy --port ${port} mkdir ${remotePath}"
+        putConfig = dict(
+            port=port,
+            remotePath=remotePath
+        )
+        emulateInvocation(putCommand, putConfig)
+        try:
+            cli.cli()
+        except SystemExit:
+            pass
+
+    except pyboard.PyboardError as e:
+        raise click.ClickException(e)
+    except RuntimeError as e:
+        raise click.ClickException(e)
+
+    ampyRelease()
+
 
 def ampyRelease():
     from ampy import cli
@@ -293,6 +314,24 @@ def ampyRelease():
             cli._board.close()
         except:
             pass
+
+def rshellRsync(port, fromPath, toPath, delete=False):
+    """Synchronises one location on a filesystem with another. Use the board:// protocol to target a folder on the board"""
+    protocol = "board://"
+    prefix = "/pyboard"
+    if fromPath == toPath:
+        raise ValueError("Sync requires the 'from' and 'to' paths to be different")
+    try:
+        emulateInvocation("rshell --ascii --buffer-size=30 --port ${port} rsync ${mirror} ${fromPath} {toPath}", dict(
+            port = port,
+            fromPath=fromPath.replace(protocol, prefix),
+            toPath=toPath.replace(protocol, prefix),
+            mirror="--mirror" if delete else "",
+        ))
+        import rshell.main
+        rshell.main.main()
+    finally:
+        pass
 
 
 main = click.Group(chain=True)
