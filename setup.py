@@ -12,7 +12,7 @@ setup(
     long_description='{}\n\n{}'.format(readme, changes),
     long_description_content_type="text/markdown",
     url='https://vgkits.org',
-    download_url = 'https://github.com/vgkits/vgkits-vanguard/archive/0.2.0_rc12.tar.gz',
+    download_url = 'https://github.com/vgkits/vanguard-cli/archive/0.2.0_rc12.tar.gz',
     author='@cefn',
     author_email='github.com@cefn.com',
     license='GPL3',
