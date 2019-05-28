@@ -78,7 +78,6 @@ def calculateImageFile(target, release):
         raise FileNotFoundError("No image matching {} available".format(target))
 
 
-#TODO erase=False default is a workaround until https://github.com/espressif/esptool/pull/314 is merged into pip
 def run(target=None, release=None, port=None, baud=1500000, erase=True, flash=True, device=None, input=None):
 
     if target is not None and input is not None:
